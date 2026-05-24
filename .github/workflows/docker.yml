@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [sync-upstream]
     if: always() && (needs.sync-upstream.result == 'success' || needs.sync-upstream.result == 'skipped')
-    timeout-minutes: 30
+    timeout-minutes: 60
     concurrency:
       group: docker-${{ github.ref }}
       cancel-in-progress: true
