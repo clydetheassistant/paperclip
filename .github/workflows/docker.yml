@@ -24,7 +24,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # WORKFLOW_SYNC_TOKEN must have `workflow` + `contents:write` scope on
+          # this repo. The default GITHUB_TOKEN cannot push changes that
+          # add/modify .github/workflows/* files, which causes this job to fail
+          # whenever upstream touches a workflow file. See MAN-440.
+          token: ${{ secrets.WORKFLOW_SYNC_TOKEN }}
 
       - name: Sync from upstream
         run: |
