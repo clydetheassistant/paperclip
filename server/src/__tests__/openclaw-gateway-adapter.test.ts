@@ -504,6 +504,7 @@ describe("openclaw gateway adapter execute", () => {
       expect(String(payload?.message ?? "")).toContain("\"commentIds\":[\"comment-1\",\"comment-2\"]");
       // Gateway rejects unknown root properties; structured wake info is delivered inside `message`.
       expect(payload?.paperclip).toBeUndefined();
+      expect(String(payload?.message ?? "")).toContain("\"latestCommentId\":\"comment-2\"");
 
       expect(logs.some((entry) => entry.includes("[openclaw-gateway:event] run=run-123 stream=assistant"))).toBe(true);
     } finally {
