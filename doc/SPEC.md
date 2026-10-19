@@ -715,7 +715,18 @@ A source tracks repository identity, branch, selected paths, and installed commi
 an existing GitHub connection supplies caller-authorized reads. Manual refresh publishes
 complete local immutable versions, preserving skill identity and assignments. Selection
 operates on whole skill packages, with inspectable included files, declared runtime
-requirements, and advisory warnings for missing or external references. New
+requirements, and advisory warnings for missing or external references. A repository
+package retains supported source files while the user selects which skill entrypoints
+appear in the library. Authored content remains unchanged and shared files travel to
+the runtime. A declarative manifest can suggest public entrypoints and setup requirements;
+new imports keep repository files together and select all discovered skills. Missing
+references, setup problems and omitted files produce persistent warnings. Files rejected
+for unsafe execution or secret disclosure are excluded without blocking other files.
+Oversized repositories use a bounded package of skill folders and referenced files
+with their original paths. Missing references do not block a valid selected skill;
+fallback preserves previously installed shared dependencies or retains the old version.
+The installed file viewer exposes saved repository dependencies. Importing never runs
+setup or configures host tools. New
 upstream skills require reviewed selection; removed or deselected skills remain
 installed. Editing starts with an independent copy. Write-back and PR publication
 are a later milestone; exact path and commit provenance provide their base.
@@ -738,6 +749,14 @@ while preserving agent pairing, normal run admission and task authority.
 Personal grants cannot authorize Runner operations. See
 [OpenAI Dot Runner](openai-dot-runner.md) for its supported release boundary.
 
+Personal Meta Muse is another experimental named Runner agent. Its managed
+receiver uses short-lived pairing and rotating private credentials; its human
+authorizer remains distinct from the agent identity. Paperclip owns admission,
+task authority, and native finalization. Detector health alone does not prove
+execution, and uncertain remote effects prevent overlapping dispatch. See
+[Personal Muse receiver](muse-personal-agent.md) for setup, stopping limits, and
+the required live qualification before release.
+
 ### Experimental connection routing
 
 A virtual AI connection can rotate new task/agent allocations through an
@@ -757,6 +776,13 @@ authentication, replay, document-sized limits, inspection, and deletion semantic
 ### Managed decision models
 
 A company may configure a shared decision model for optional Paperclip features. The instance owns credential resolution, authorization, budget admission, and attributable service charges. Company-sponsored background use is enabled by default during configuration; explicit opt-out persists. User and agent requests keep their own access boundaries and cannot become sponsored background requests after denial. Availability is a cheap local capability check, and metadata-only request history makes service usage inspectable. The implemented V1 contract is in [decision-models.md](decision-models.md).
+
+
+### Task workspace ownership (2026-10-09)
+
+Organizational projects, task files, personal agent home, and provider home are separate concepts. App and chat tasks share one workspace policy: preserve a binding or explicit configured folder, otherwise allocate a stable task directory. A repository is optional and can be prepared without creating a project. Optional connection and destination defaults feed the same task policy; they do not grant permissions or relocate existing conversations.
+
+Agents select authorized workspace/repository intent while the harness owns paths, preparation, persistence and safe transitions. Intentional simultaneous sharing of one physical local/SSH folder remains supported. Provider sessions keep their admitted root through completion and recovery. See [SPEC-implementation.md](SPEC-implementation.md) and [the layer architecture](plans/2026-10-09-task-workspaces.md) for the versioned contracts and rollout constraints.
 
 ### Fast responses
 
